@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
   </head>
   <body>
     <div
@@ -346,7 +347,8 @@
               <table class="table table-responsive d-table">
                 <tr>
                   <td>
-                    <input
+                    <input 
+                    id="q1"
                       type="text"
                       class="form-control pl-0"
                       placeholder="NAME"
@@ -354,6 +356,7 @@
                   </td>
                   <td>
                     <input
+                      id="q2"
                       type="email"
                       class="form-control pl-0"
                       placeholder="EMAIL"
@@ -366,6 +369,7 @@
                 <tr>
                   <td colspan="2">
                     <input
+                      id="q3"
                       type="text"
                       class="form-control pl-0"
                       placeholder="CONTACT NUMBER"
@@ -378,6 +382,7 @@
                 <tr>
                   <td colspan="2">
                     <input
+                      id="q4"
                       type="text"
                       class="form-control pl-0"
                       placeholder="MESSAGE"
@@ -389,7 +394,7 @@
                 </tr>
                 <tr>
                   <td colspan="2" class="text-center pl-0">
-                    <button type="submit" class="btn btn-dark">SEND</button>
+                    <button type="button" onclick="sendEmail()" class="btn btn-dark">SEND</button>
                   </td>
                 </tr>
               </table>
@@ -436,6 +441,31 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Bootstrap JS, ... -->
 
+    <script>
+      function sendEmail() {
+      const q1 = document.querySelector('#q1');
+      const q2 = document.querySelector('#q2');
+      const q3 = document.querySelector('#q3');
+      const q4 = document.querySelector('#q4');
+
+      const name=q1.value;
+      const email=q2.value;
+      const num=q3.value;
+      const msg=q4.value;
+      
+      
+        // console.log(name);
+        Email.send({
+          Host: "smtp.mailtrap.io",
+          Username: "dbf4fe9c6f3a13",
+          Password: "7a60b761104eb0",
+          To: "me@mail.com",
+          From: `${email}`,
+          Subject: "Query",
+          Body: `<html><h2>${email}<h2/><h2>${num}<h2/><h2>${name}<h2/><h3>${msg}<h3/></html>`,
+        }).then((message) => alert(message));
+       }
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/parallax.js"></script>

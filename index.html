@@ -442,7 +442,7 @@
     <!-- jQuery first, then Bootstrap JS, ... -->
 
     <script>
-      function sendEmail() {
+      async function sendEmail() {
       const q1 = document.querySelector('#q1');
       const q2 = document.querySelector('#q2');
       const q3 = document.querySelector('#q3');
@@ -455,7 +455,7 @@
       
       
         // console.log(name);
-        Email.send({
+        await Email.send({
           Host: "smtp.mailtrap.io",
           Username: "dbf4fe9c6f3a13",
           Password: "7a60b761104eb0",
@@ -464,6 +464,12 @@
           Subject: "Query",
           Body: `<html><h2>${email}<h2/><h2>${num}<h2/><h2>${name}<h2/><h3>${msg}<h3/></html>`,
         }).then((message) => alert(message));
+        
+        
+        q1.value="";
+        q2.value="";
+        q3.value="";
+        q4.value="";
        }
     </script>
     <script src="js/jquery.min.js"></script>
